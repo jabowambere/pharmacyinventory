@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GreenCare Pharmacy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-page {
+            padding-top: 5rem;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--foreground);
+        }
+        
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: var(--input-background);
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-info-card {
+            background: linear-gradient(135deg, white, rgba(240, 253, 244, 0.1));
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .contact-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.2));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+        
+        .contact-details {
+            color: var(--muted-foreground);
+        }
+        
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .hours-table th,
+        .hours-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-table th {
+            background: var(--secondary);
+            font-weight: 600;
+            color: var(--foreground);
+        }
+        
+        .hours-table td {
+            color: var(--muted-foreground);
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 300px;
+            background: var(--muted);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted-foreground);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-placeholder {
+            text-align: center;
+        }
+        
+        .emergency-banner {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .emergency-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .emergency-text {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .quick-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-contact-item {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-contact-item:hover {
+            background: rgba(5, 150, 105, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-contact-icon {
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-contact-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .quick-contact-details {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-main">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v6m0 8v6m-6-12h6m8 0h-6M8 8l8 8m0-8l-8 8"/>
+                            </svg>
+                        </div>
+                        <div class="logo-badge"></div>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">GreenCare</div>
+                        <div class="logo-subtitle">Pharmacy</div>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="medicines.html" class="nav-link">Medicines</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <!-- Right Section -->
+                <div class="flex items-center gap-4">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Online</span>
+                    </div>
+                    <a href="login.html" class="btn btn-primary">Staff Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="contact-page">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="about-hero">
+                <h1 class="section-title mb-4">Contact Us</h1>
+                <p class="section-subtitle">
+                    Get in touch with our team for any questions, concerns, or assistance you need
+                </p>
+            </section>
+
+            <!-- Emergency Banner -->
+            <div class="emergency-banner">
+                <div class="emergency-title">Medical Emergency?</div>
+                <div class="emergency-text">
+                    For medical emergencies, call 911 immediately. For urgent medication questions after hours, call our 24/7 hotline: (555) 123-HELP
+                </div>
+            </div>
+
+            <!-- Quick Contact Options -->
+            <div class="quick-contact">
+                <a href="tel:5551234567" class="quick-contact-item">
+                    <div class="quick-contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </div>
+                    <div class="quick-contact-title">Call Us</div>
+                    <div class="quick-contact-details">(555) 123-4567</div>
+                </a>
+
+                <a href="mailto:info@greencare.com" class="quick-contact-item">
+                    <div class="quick-contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div class="quick-contact-title">Email Us</div>
+                    <div class="quick-contact-details">info@greencare.com</div>
+                </a>
+
+                <a href="https://wa.me/5551234567" class="quick-contact-item">
+                    <div class="quick-contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <div class="quick-contact-title">WhatsApp</div>
+                    <div class="quick-contact-details">Quick Chat</div>
+                </a>
+
+                <a href="#directions" class="quick-contact-item">
+                    <div class="quick-contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <div class="quick-contact-title">Visit Us</div>
+                    <div class="quick-contact-details">Get Directions</div>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 grid-cols-2 gap-8 mb-16">
+                <!-- Contact Form -->
+                <div>
+                    <h2 class="section-title mb-6">Send us a Message</h2>
+                    <form class="contact-form" onsubmit="handleContactForm(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject *</label>
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="prescription">Prescription Question</option>
+                                <option value="delivery">Delivery Service</option>
+                                <option value="consultation">Schedule Consultation</option>
+                                <option value="insurance">Insurance & Billing</option>
+                                <option value="complaint">Complaint or Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message *</label>
+                            <textarea id="message" name="message" class="form-textarea" 
+                                      placeholder="Please provide details about your inquiry..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" name="newsletter" value="yes">
+                                <span class="font-normal">Subscribe to our newsletter for health tips and updates</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <h2 class="section-title mb-6">Get in Touch</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <h3 class="contact-title">Visit Our Pharmacy</h3>
+                            <div class="contact-details">
+                                <p>123 Health Street</p>
+                                <p>Medical City, MC 12345</p>
+                                <p>United States</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <h3 class="contact-title">Call Us</h3>
+                            <div class="contact-details">
+                                <p><strong>Main:</strong> (555) 123-4567</p>
+                                <p><strong>24/7 Hotline:</strong> (555) 123-HELP</p>
+                                <p><strong>Fax:</strong> (555) 123-4568</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <h3 class="contact-title">Email Us</h3>
+                            <div class="contact-details">
+                                <p><strong>General:</strong> info@greencare.com</p>
+                                <p><strong>Prescriptions:</strong> rx@greencare.com</p>
+                                <p><strong>Support:</strong> support@greencare.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hours and Location -->
+            <div class="grid grid-cols-1 grid-cols-2 gap-8 mb-16">
+                <!-- Operating Hours -->
+                <div>
+                    <h2 class="section-title mb-6">Operating Hours</h2>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                        <table class="hours-table">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monday - Friday</td>
+                                    <td>8:00 AM - 9:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>9:00 AM - 7:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td>10:00 AM - 6:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Holidays</td>
+                                    <td>Varies (Call for hours)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <p class="text-sm text-green-800">
+                                <strong>Emergency Services:</strong> Our 24/7 hotline is available for urgent medication questions outside regular hours.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map/Location -->
+                <div>
+                    <h2 class="section-title mb-6" id="directions">Find Us</h2>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <p class="mt-2 font-medium">Interactive Map</p>
+                            <p class="text-sm">123 Health Street, Medical City, MC 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 space-y-2">
+                        <a href="https://maps.google.com/?q=123+Health+Street+Medical+City+MC+12345" 
+                           target="_blank" class="btn btn-outline w-full">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            Get Directions
+                        </a>
+                        
+                        <div class="text-sm text-muted-foreground text-center">
+                            <p><strong>Parking:</strong> Free parking available in front and back of building</p>
+                            <p><strong>Accessibility:</strong> Wheelchair accessible entrance and facilities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="bg-gradient-to-r from-secondary/40 to-accent/20 p-8 rounded-lg">
+                <div class="text-center mb-6">
+                    <h2 class="section-title mb-4">Need Immediate Assistance?</h2>
+                    <p class="section-subtitle">Our team is here to help you with all your pharmaceutical needs</p>
+                </div>
+                
+                <div class="grid grid-cols-1 grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="contact-icon mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Quick Response</h3>
+                        <p class="text-sm text-muted-foreground">We respond to all inquiries within 24 hours during business days</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="contact-icon mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="m22 21-3-3m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Expert Support</h3>
+                        <p class="text-sm text-muted-foreground">Licensed pharmacists available for consultations and advice</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="contact-icon mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Confidential</h3>
+                        <p class="text-sm text-muted-foreground">All communications are kept strictly confidential and secure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg-1"></div>
+        <div class="footer-bg-2"></div>
+        
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <div class="footer-logo"></div>
+                        <h3>GreenCare</h3>
+                    </div>
+                    <p class="opacity-90" style="font-size: 0.875rem;">
+                        Trusted healthcare since 2001
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon"></div>
+                        Quick Links
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="medicines.html">Medicines</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon round"></div>
+                        Services
+                    </h4>
+                    <ul class="service-list">
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Prescriptions</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Consultations</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Delivery</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Health Screenings</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon"></div>
+                        Contact
+                    </h4>
+                    <div style="font-size: 0.875rem; opacity: 0.9;">
+                        <p>123 Health Street</p>
+                        <p>Medical City, MC 12345</p>
+                        <p>(555) 123-4567</p>
+                        <p>info@greencare.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 GreenCare Pharmacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

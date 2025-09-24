@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GreenCare Pharmacy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-page {
+            padding-top: 5rem;
+        }
+        
+        .about-hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(220, 252, 231, 0.2));
+            text-align: center;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--accent);
+        }
+        
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+        
+        .team-title {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-description {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+        
+        .value-card {
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, white, rgba(240, 253, 244, 0.1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.2));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary);
+        }
+        
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: var(--muted-foreground);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-main">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v6m0 8v6m-6-12h6m8 0h-6M8 8l8 8m0-8l-8 8"/>
+                            </svg>
+                        </div>
+                        <div class="logo-badge"></div>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">GreenCare</div>
+                        <div class="logo-subtitle">Pharmacy</div>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="medicines.html" class="nav-link">Medicines</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <!-- Right Section -->
+                <div class="flex items-center gap-4">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Online</span>
+                    </div>
+                    <a href="login.html" class="btn btn-primary">Staff Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="about-page">
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <h1 class="section-title mb-4">About GreenCare Pharmacy</h1>
+                <p class="section-subtitle max-w-3xl mx-auto">
+                    For over two decades, we've been serving our community with dedication, 
+                    expertise, and a commitment to your health and well-being.
+                </p>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="py-16">
+            <div class="container">
+                <div class="grid grid-cols-1 grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="section-title mb-6">Our Story</h2>
+                        <div class="space-y-4">
+                            <p>
+                                Founded in 2001, GreenCare Pharmacy began as a small neighborhood pharmacy 
+                                with a simple mission: to provide personalized healthcare services and 
+                                quality medications to our community.
+                            </p>
+                            <p>
+                                Over the years, we've grown from a single location to become a trusted 
+                                healthcare partner for thousands of families. Despite our growth, we've 
+                                never lost sight of our core values: compassion, integrity, and excellence 
+                                in pharmaceutical care.
+                            </p>
+                            <p>
+                                Today, we combine traditional pharmacy values with modern technology and 
+                                innovation to serve you better. Our team of licensed pharmacists and 
+                                healthcare professionals is dedicated to ensuring you receive the best 
+                                possible care.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop" 
+                             alt="GreenCare Pharmacy interior" class="about-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-16 bg-gradient-to-b from-white to-secondary/20">
+            <div class="container">
+                <div class="section-header mb-12">
+                    <h2 class="section-title">Our Core Values</h2>
+                    <p class="section-subtitle">The principles that guide everything we do</p>
+                </div>
+                
+                <div class="grid grid-cols-1 grid-cols-3 gap-8">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Compassion</h3>
+                        <p class="text-muted-foreground">
+                            We treat every customer with empathy, understanding, and genuine care for their well-being.
+                        </p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Integrity</h3>
+                        <p class="text-muted-foreground">
+                            We maintain the highest ethical standards in all our practices and interactions.
+                        </p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                                <path d="M21 12c.552 0 1-.448 1-1V8c0-.552-.448-1-1-1s-1 .448-1 1v3c0 .552.448 1 1 1z"/>
+                                <path d="M3 12c-.552 0-1-.448-1-1V8c0-.552.448-1 1-1s1 .448 1 1v3c0 .552-.448 1-1 1z"/>
+                                <path d="M12 21c.552 0 1-.448 1-1v-3c0-.552-.448-1-1-1s-1 .448-1 1v3c0 .552.448 1 1 1z"/>
+                                <path d="M12 3c-.552 0-1 .448-1 1v3c0 .552.448 1 1 1s1-.448 1-1V4c0-.552-.448-1-1-1z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Excellence</h3>
+                        <p class="text-muted-foreground">
+                            We strive for excellence in pharmaceutical care, customer service, and professional standards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-16">
+            <div class="container">
+                <div class="section-header mb-12">
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <p class="section-subtitle">Dedicated professionals committed to your health</p>
+                </div>
+                
+                <div class="grid grid-cols-1 grid-cols-3 gap-8">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200&h=200&fit=crop&crop=face" 
+                             alt="Dr. Sarah Mitchell" class="team-photo">
+                        <h3 class="team-name">Dr. Sarah Mitchell</h3>
+                        <p class="team-title">Chief Pharmacist</p>
+                        <p class="team-description">
+                            With 15 years of experience, Dr. Mitchell leads our clinical pharmacy services 
+                            and ensures the highest standards of patient care.
+                        </p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&h=200&fit=crop&crop=face" 
+                             alt="Dr. Michael Chen" class="team-photo">
+                        <h3 class="team-name">Dr. Michael Chen</h3>
+                        <p class="team-title">Clinical Pharmacist</p>
+                        <p class="team-description">
+                            Specializing in medication therapy management, Dr. Chen provides comprehensive 
+                            medication reviews and consultation services.
+                        </p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1594824020349-4bb7558a5e67?w=200&h=200&fit=crop&crop=face" 
+                             alt="Lisa Rodriguez" class="team-photo">
+                        <h3 class="team-name">Lisa Rodriguez</h3>
+                        <p class="team-title">Pharmacy Manager</p>
+                        <p class="team-description">
+                            Lisa ensures smooth daily operations and exceptional customer service, bringing 
+                            10 years of pharmacy management experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="py-16 bg-gradient-to-b from-secondary/20 to-white">
+            <div class="container">
+                <div class="section-header mb-12">
+                    <h2 class="section-title">Our Journey</h2>
+                    <p class="section-subtitle">Key milestones in our commitment to community health</p>
+                </div>
+                
+                <div class="max-w-3xl mx-auto">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2001</div>
+                            <h3 class="timeline-title">GreenCare Pharmacy Founded</h3>
+                            <p class="timeline-description">
+                                Opened our first location with a commitment to personalized pharmaceutical care 
+                                and community health.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2005</div>
+                            <h3 class="timeline-title">Clinical Services Expansion</h3>
+                            <p class="timeline-description">
+                                Introduced comprehensive medication therapy management and clinical consultation services.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2010</div>
+                            <h3 class="timeline-title">Digital Integration</h3>
+                            <p class="timeline-description">
+                                Implemented modern pharmacy management systems and online prescription refill services.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2015</div>
+                            <h3 class="timeline-title">Community Health Programs</h3>
+                            <p class="timeline-description">
+                                Launched health screening programs, vaccination services, and community wellness initiatives.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <h3 class="timeline-title">Telehealth Services</h3>
+                            <p class="timeline-description">
+                                Expanded to include telepharmacy consultations and contactless prescription services.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2024</div>
+                            <h3 class="timeline-title">Serving 10,000+ Customers</h3>
+                            <p class="timeline-description">
+                                Reached a milestone of serving over 10,000 customers while maintaining our commitment 
+                                to personalized care.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="cta-bg-1"></div>
+            <div class="cta-bg-2"></div>
+            
+            <div class="container cta-content">
+                <div class="text-center">
+                    <h2 class="section-title mb-4">Experience the GreenCare Difference</h2>
+                    <p class="hero-subtitle mb-8 opacity-90">
+                        Join thousands of satisfied customers who trust us with their health
+                    </p>
+                    <div class="flex gap-4 justify-center">
+                        <a href="medicines.html" class="btn btn-secondary btn-lg">
+                            Browse Medications
+                        </a>
+                        <a href="contact.html" class="btn btn-cta-outline btn-lg">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg-1"></div>
+        <div class="footer-bg-2"></div>
+        
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <div class="footer-logo"></div>
+                        <h3>GreenCare</h3>
+                    </div>
+                    <p class="opacity-90" style="font-size: 0.875rem;">
+                        Trusted healthcare since 2001
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon"></div>
+                        Quick Links
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="medicines.html">Medicines</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon round"></div>
+                        Services
+                    </h4>
+                    <ul class="service-list">
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Prescriptions</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Consultations</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Delivery</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Health Screenings</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon"></div>
+                        Contact
+                    </h4>
+                    <div style="font-size: 0.875rem; opacity: 0.9;">
+                        <p>123 Health Street</p>
+                        <p>Medical City, MC 12345</p>
+                        <p>(555) 123-4567</p>
+                        <p>info@greencare.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 GreenCare Pharmacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

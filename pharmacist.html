@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacist Portal - GreenCare Pharmacy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pharmacist-page {
+            padding-top: 5rem;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+        
+        .pharmacist-header {
+            background: linear-gradient(135deg, var(--primary), rgba(5, 150, 105, 0.9));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+        
+        .pharmacist-header.scrolled {
+            background: rgba(5, 150, 105, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pharmacist-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .pharmacist-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .pharmacist-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pharmacist-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .dashboard-content {
+            padding: 2rem 0;
+        }
+        
+        .welcome-card {
+            background: linear-gradient(135deg, white, rgba(240, 253, 244, 0.1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+        
+        .welcome-subtitle {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .quick-stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(5, 150, 105, 0.05);
+            border-radius: var(--radius);
+        }
+        
+        .quick-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .quick-stat-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+        
+        .tabs {
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-list {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-weight: 500;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(5, 150, 105, 0.02);
+        }
+        
+        .tab-button:hover {
+            color: var(--primary);
+            background: rgba(5, 150, 105, 0.02);
+        }
+        
+        .tab-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            background: var(--secondary);
+            font-weight: 600;
+            color: var(--foreground);
+            font-size: 0.875rem;
+        }
+        
+        .data-table td {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(5, 150, 105, 0.02);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-ready {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-dispensed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .priority-high {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .priority-normal {
+            background: #f0fdf4;
+            color: #166534;
+        }
+        
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 0.25rem;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .action-btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .action-btn.primary:hover {
+            background: rgba(5, 150, 105, 0.9);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted-foreground);
+        }
+        
+        .patient-info {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+        }
+        
+        .patient-info h4 {
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+        
+        .patient-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .patient-detail {
+            font-size: 0.875rem;
+        }
+        
+        .patient-detail strong {
+            color: var(--foreground);
+        }
+        
+        .consultation-form {
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--foreground);
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            background: var(--input-background);
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border: 1px solid;
+        }
+        
+        .alert-info {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            color: #1e40af;
+        }
+        
+        .alert-warning {
+            background: #fffbeb;
+            border-color: #fed7aa;
+            color: #92400e;
+        }
+        
+        .medication-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .medication-item {
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .medication-name {
+            font-weight: 600;
+            color: var(--foreground);
+        }
+        
+        .medication-details {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            margin-top: 0.25rem;
+        }
+        
+        .interaction-warning {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pharmacist Header -->
+    <header class="pharmacist-header" id="pharmacistHeader">
+        <div class="container">
+            <div class="pharmacist-nav">
+                <div class="pharmacist-logo">
+                    <div class="pharmacist-logo-icon">
+                        <span style="font-weight: bold; color: white;">GC</span>
+                    </div>
+                    <h1 class="pharmacist-title">Pharmacist Portal</h1>
+                </div>
+                <a href="index.html" class="logout-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14l5-5-5-5m5 5H9"/>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pharmacist-page">
+        <div class="container dashboard-content">
+            <!-- Welcome Card -->
+            <div class="welcome-card">
+                <h2 class="welcome-title">Welcome back, Dr. Smith</h2>
+                <p class="welcome-subtitle">Here's your dashboard overview for today</p>
+                
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">12</div>
+                        <div class="quick-stat-label">Pending Orders</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">8</div>
+                        <div class="quick-stat-label">Ready for Pickup</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">35</div>
+                        <div class="quick-stat-label">Completed Today</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">3</div>
+                        <div class="quick-stat-label">Consultations</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Tabs -->
+            <div class="tabs">
+                <div class="tab-list">
+                    <button class="tab-button active" onclick="switchTab('prescriptions')">Prescriptions</button>
+                    <button class="tab-button" onclick="switchTab('consultations')">Consultations</button>
+                    <button class="tab-button" onclick="switchTab('inventory')">Inventory</button>
+                    <button class="tab-button" onclick="switchTab('patients')">Patient Records</button>
+                </div>
+
+                <!-- Prescriptions Tab -->
+                <div id="prescriptions" class="tab-content active">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Prescription Queue</h3>
+                        <div class="alert alert-info" style="margin-bottom: 0; padding: 0.5rem 1rem;">
+                            <strong>Priority System:</strong> High priority prescriptions are marked in red
+                        </div>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Prescription ID</th>
+                                <th>Patient</th>
+                                <th>Medication</th>
+                                <th>Quantity</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Time Submitted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#RX-001</td>
+                                <td>John Smith</td>
+                                <td>Ibuprofen 200mg</td>
+                                <td>30 tablets</td>
+                                <td><span class="status-badge priority-high">High</span></td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>10:30 AM</td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openPrescriptionModal('RX-001')">Review</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#RX-002</td>
+                                <td>Emma Johnson</td>
+                                <td>Vitamin D 1000IU</td>
+                                <td>60 capsules</td>
+                                <td><span class="status-badge priority-normal">Normal</span></td>
+                                <td><span class="status-badge status-ready">Ready</span></td>
+                                <td>9:45 AM</td>
+                                <td>
+                                    <button class="action-btn">Dispense</button>
+                                    <button class="action-btn">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#RX-003</td>
+                                <td>Mike Davis</td>
+                                <td>Amoxicillin 500mg</td>
+                                <td>21 capsules</td>
+                                <td><span class="status-badge priority-high">High</span></td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>11:15 AM</td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openPrescriptionModal('RX-003')">Review</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#RX-004</td>
+                                <td>Sarah Wilson</td>
+                                <td>Metformin 500mg</td>
+                                <td>90 tablets</td>
+                                <td><span class="status-badge priority-normal">Normal</span></td>
+                                <td><span class="status-badge status-dispensed">Dispensed</span></td>
+                                <td>8:30 AM</td>
+                                <td>
+                                    <button class="action-btn">View</button>
+                                    <button class="action-btn">Print</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Consultations Tab -->
+                <div id="consultations" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Consultation Requests</h3>
+                        <button class="btn btn-primary" onclick="openModal('newConsultationModal')">New Consultation</button>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <strong>Note:</strong> All consultations are confidential. Ensure patient privacy is maintained at all times.
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Type</th>
+                                <th>Topic</th>
+                                <th>Scheduled Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mary Johnson</td>
+                                <td>Medication Review</td>
+                                <td>Blood Pressure Management</td>
+                                <td>2:00 PM Today</td>
+                                <td><span class="status-badge status-pending">Scheduled</span></td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openConsultationModal('mary-johnson')">Start</button>
+                                    <button class="action-btn">Reschedule</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Robert Brown</td>
+                                <td>Drug Interaction Check</td>
+                                <td>New Prescription Concerns</td>
+                                <td>3:30 PM Today</td>
+                                <td><span class="status-badge status-pending">Scheduled</span></td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openConsultationModal('robert-brown')">Start</button>
+                                    <button class="action-btn">View History</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lisa Davis</td>
+                                <td>Health Screening</td>
+                                <td>Diabetes Monitoring</td>
+                                <td>Yesterday 4:00 PM</td>
+                                <td><span class="status-badge status-dispensed">Completed</span></td>
+                                <td>
+                                    <button class="action-btn">View Report</button>
+                                    <button class="action-btn">Follow-up</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Inventory Tab -->
+                <div id="inventory" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Inventory Management</h3>
+                        <div class="alert alert-warning" style="margin-bottom: 0; padding: 0.5rem 1rem;">
+                            <strong>Low Stock Alert:</strong> 5 items need restocking
+                        </div>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Medication</th>
+                                <th>Current Stock</th>
+                                <th>Minimum Required</th>
+                                <th>Last Restocked</th>
+                                <th>Expiry Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ibuprofen 200mg</td>
+                                <td style="color: #dc2626; font-weight: 600;">8</td>
+                                <td>50</td>
+                                <td>5 days ago</td>
+                                <td>Dec 2025</td>
+                                <td><span class="status-badge priority-high">Low Stock</span></td>
+                                <td>
+                                    <button class="action-btn primary">Reorder</button>
+                                    <button class="action-btn">View Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin C 1000mg</td>
+                                <td style="color: #059669; font-weight: 600;">156</td>
+                                <td>30</td>
+                                <td>2 days ago</td>
+                                <td>Nov 2025</td>
+                                <td><span class="status-badge priority-normal">In Stock</span></td>
+                                <td>
+                                    <button class="action-btn">Update</button>
+                                    <button class="action-btn">View Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amoxicillin 500mg</td>
+                                <td style="color: #f59e0b; font-weight: 600;">25</td>
+                                <td>40</td>
+                                <td>1 week ago</td>
+                                <td>Jan 2026</td>
+                                <td><span class="status-badge status-pending">Low Stock</span></td>
+                                <td>
+                                    <button class="action-btn primary">Reorder</button>
+                                    <button class="action-btn">View Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Metformin 500mg</td>
+                                <td style="color: #059669; font-weight: 600;">89</td>
+                                <td>25</td>
+                                <td>3 days ago</td>
+                                <td>Oct 2025</td>
+                                <td><span class="status-badge priority-normal">In Stock</span></td>
+                                <td>
+                                    <button class="action-btn">Update</button>
+                                    <button class="action-btn">View Details</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Patients Tab -->
+                <div id="patients" class="tab-content">
+                    <h3 style="margin-bottom: 1.5rem;">Patient Records</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Contact</th>
+                                <th>Last Visit</th>
+                                <th>Current Medications</th>
+                                <th>Allergies</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Smith</td>
+                                <td>john.smith@email.com<br>(555) 123-4567</td>
+                                <td>Today</td>
+                                <td>2 active prescriptions</td>
+                                <td>Penicillin</td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openPatientModal('john-smith')">View Full Record</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Emma Johnson</td>
+                                <td>emma.johnson@email.com<br>(555) 234-5678</td>
+                                <td>Yesterday</td>
+                                <td>1 active prescription</td>
+                                <td>None known</td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openPatientModal('emma-johnson')">View Full Record</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mike Davis</td>
+                                <td>mike.davis@email.com<br>(555) 345-6789</td>
+                                <td>2 days ago</td>
+                                <td>3 active prescriptions</td>
+                                <td>Shellfish, Aspirin</td>
+                                <td>
+                                    <button class="action-btn primary" onclick="openPatientModal('mike-davis')">View Full Record</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Prescription Review Modal -->
+    <div id="prescriptionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Prescription Review - <span id="prescriptionId"></span></h2>
+                <button class="close-btn" onclick="closeModal('prescriptionModal')">&times;</button>
+            </div>
+            
+            <div class="patient-info">
+                <h4>Patient Information</h4>
+                <div class="patient-details">
+                    <div class="patient-detail"><strong>Name:</strong> <span id="patientName">John Smith</span></div>
+                    <div class="patient-detail"><strong>DOB:</strong> <span id="patientDOB">Jan 15, 1980</span></div>
+                    <div class="patient-detail"><strong>Phone:</strong> <span id="patientPhone">(555) 123-4567</span></div>
+                    <div class="patient-detail"><strong>Allergies:</strong> <span id="patientAllergies">Penicillin</span></div>
+                </div>
+            </div>
+            
+            <div>
+                <h4 style="margin-bottom: 1rem;">Prescription Details</h4>
+                <ul class="medication-list">
+                    <li class="medication-item">
+                        <div class="medication-name">Ibuprofen 200mg</div>
+                        <div class="medication-details">Quantity: 30 tablets | Sig: Take 1 tablet by mouth every 6 hours as needed for pain</div>
+                        <div class="medication-details">Prescriber: Dr. Johnson | Date: Today</div>
+                    </li>
+                </ul>
+                
+                <div class="interaction-warning">
+                    <strong>⚠️ Drug Interaction Alert:</strong> Patient is currently taking Warfarin. Monitor for increased bleeding risk.
+                </div>
+            </div>
+            
+            <div class="consultation-form">
+                <h4 style="margin-bottom: 1rem;">Pharmacist Notes</h4>
+                <form onsubmit="handlePrescriptionReview(event)">
+                    <div class="form-group">
+                        <label class="form-label">Review Status</label>
+                        <select class="form-select" name="status" required>
+                            <option value="">Select status</option>
+                            <option value="approved">Approved - Ready to Dispense</option>
+                            <option value="clarification">Needs Clarification</option>
+                            <option value="hold">Hold - Contact Prescriber</option>
+                            <option value="substitute">Generic Substitution Available</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-textarea" name="notes" placeholder="Add any notes about this prescription..."></textarea>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button type="submit" class="btn btn-primary flex-1">Complete Review</button>
+                        <button type="button" class="btn btn-outline" onclick="closeModal('prescriptionModal')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Patient Consultation</h2>
+                <button class="close-btn" onclick="closeModal('consultationModal')">&times;</button>
+            </div>
+            
+            <div class="patient-info">
+                <h4>Patient: <span id="consultationPatientName">Mary Johnson</span></h4>
+                <div class="patient-details">
+                    <div class="patient-detail"><strong>Type:</strong> Medication Review</div>
+                    <div class="patient-detail"><strong>Topic:</strong> Blood Pressure Management</div>
+                    <div class="patient-detail"><strong>Time:</strong> 2:00 PM Today</div>
+                    <div class="patient-detail"><strong>Current BP:</strong> 145/92 mmHg</div>
+                </div>
+            </div>
+            
+            <div>
+                <h4 style="margin-bottom: 1rem;">Current Medications</h4>
+                <ul class="medication-list">
+                    <li class="medication-item">
+                        <div class="medication-name">Lisinopril 10mg</div>
+                        <div class="medication-details">Daily | Started 3 months ago | Good compliance</div>
+                    </li>
+                    <li class="medication-item">
+                        <div class="medication-name">Hydrochlorothiazide 25mg</div>
+                        <div class="medication-details">Daily | Added 1 month ago | Some dizziness reported</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <form class="consultation-form" onsubmit="handleConsultation(event)">
+                <div class="form-group">
+                    <label class="form-label">Assessment</label>
+                    <textarea class="form-textarea" name="assessment" placeholder="Patient assessment and findings..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Recommendations</label>
+                    <textarea class="form-textarea" name="recommendations" placeholder="Treatment recommendations and medication adjustments..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Follow-up Required</label>
+                    <select class="form-select" name="followup">
+                        <option value="">Select follow-up</option>
+                        <option value="1week">1 Week</option>
+                        <option value="2weeks">2 Weeks</option>
+                        <option value="1month">1 Month</option>
+                        <option value="none">No Follow-up Needed</option>
+                    </select>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button type="submit" class="btn btn-primary flex-1">Complete Consultation</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('consultationModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Patient Record Modal -->
+    <div id="patientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Patient Record - <span id="patientRecordName">John Smith</span></h2>
+                <button class="close-btn" onclick="closeModal('patientModal')">&times;</button>
+            </div>
+            
+            <div class="patient-info">
+                <h4>Patient Information</h4>
+                <div class="patient-details">
+                    <div class="patient-detail"><strong>Name:</strong> John Smith</div>
+                    <div class="patient-detail"><strong>DOB:</strong> January 15, 1980</div>
+                    <div class="patient-detail"><strong>Phone:</strong> (555) 123-4567</div>
+                    <div class="patient-detail"><strong>Email:</strong> john.smith@email.com</div>
+                    <div class="patient-detail"><strong>Address:</strong> 123 Main St, City, State 12345</div>
+                    <div class="patient-detail"><strong>Insurance:</strong> Blue Cross Blue Shield</div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">Current Medications</h4>
+                <ul class="medication-list">
+                    <li class="medication-item">
+                        <div class="medication-name">Ibuprofen 200mg</div>
+                        <div class="medication-details">30 tablets | Take as needed for pain | Prescribed today</div>
+                    </li>
+                    <li class="medication-item">
+                        <div class="medication-name">Multivitamin</div>
+                        <div class="medication-details">30 tablets | Daily | Ongoing</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">Allergies & Warnings</h4>
+                <div class="interaction-warning">
+                    <strong>⚠️ Allergy Alert:</strong> Patient is allergic to Penicillin (rash, hives)
+                </div>
+            </div>
+            
+            <div>
+                <h4 style="margin-bottom: 1rem;">Recent Prescription History</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Medication</th>
+                            <th>Prescriber</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Today</td>
+                            <td>Ibuprofen 200mg</td>
+                            <td>Dr. Johnson</td>
+                            <td><span class="status-badge status-pending">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>Last week</td>
+                            <td>Multivitamin</td>
+                            <td>OTC Purchase</td>
+                            <td><span class="status-badge status-dispensed">Dispensed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2 weeks ago</td>
+                            <td>Acetaminophen 500mg</td>
+                            <td>Dr. Smith</td>
+                            <td><span class="status-badge status-dispensed">Dispensed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="closeModal('patientModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('pharmacistHeader');
+            
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+        });
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function openPrescriptionModal(prescriptionId) {
+            document.getElementById('prescriptionId').textContent = prescriptionId;
+            openModal('prescriptionModal');
+        }
+
+        function openConsultationModal(patientId) {
+            // In a real app, this would load patient data based on the ID
+            openModal('consultationModal');
+        }
+
+        function openPatientModal(patientId) {
+            // In a real app, this would load patient data based on the ID
+            openModal('patientModal');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form handlers
+        function handlePrescriptionReview(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const reviewData = {
+                status: formData.get('status'),
+                notes: formData.get('notes')
+            };
+            
+            alert(`Prescription review completed with status: ${reviewData.status}`);
+            closeModal('prescriptionModal');
+            event.target.reset();
+        }
+
+        function handleConsultation(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const consultationData = {
+                assessment: formData.get('assessment'),
+                recommendations: formData.get('recommendations'),
+                followup: formData.get('followup')
+            };
+            
+            alert('Consultation completed and recorded successfully!');
+            closeModal('consultationModal');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenCare Pharmacy - Your Trusted Healthcare Partner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-main">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v6m0 8v6m-6-12h6m8 0h-6M8 8l8 8m0-8l-8 8"/>
+                            </svg>
+                        </div>
+                        <div class="logo-badge"></div>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">GreenCare</div>
+                        <div class="logo-subtitle">Pharmacy</div>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="medicines.html" class="nav-link">Medicines</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <!-- Right Section -->
+                <div class="flex items-center gap-4">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Online</span>
+                    </div>
+                    <a href="login.html" class="btn btn-primary">Staff Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-1"></div>
+        <div class="hero-bg-2"></div>
+        
+        <div class="container">
+            <div class="grid grid-cols-1 grid-cols-2-sm gap-8 items-center hero-content">
+                <div>
+                    <div class="hero-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        Trusted Since 2001
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Your Health,
+                        <span class="hero-highlight">Our Priority</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Quality medications & professional care
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="medicines.html" class="btn btn-primary btn-lg">
+                            Browse Medications
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 0.5rem;">
+                                <path d="M5 12h14m-7-7 7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-lg">Contact Us</a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">23+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">10k+</div>
+                            <div class="stat-label">Customers</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5★</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="hero-image-bg"></div>
+                    <div class="hero-image-card">
+                        <img src="https://images.unsplash.com/photo-1596522016734-8e6136fe5cfa?w=500&h=300&fit=crop&crop=center" alt="Pharmacy medications and healthcare">
+                        
+                        <!-- Floating Elements -->
+                        <div class="floating-badge floating-badge-1">
+                            <div class="flex items-center gap-2">
+                                <div class="status-dot"></div>
+                                <span class="font-medium text-sm">Available 24/7</span>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-badge floating-badge-2">
+                            <div class="font-medium text-sm">Free Consultation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <p class="section-subtitle">Exceptional care with personal touch</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="feature-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Licensed Pharmacists</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Our certified pharmacists ensure your medications are safe and effective.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="feature-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Quick Service</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Fast prescription filling and over-the-counter medication availability.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="feature-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="m22 21-3-3m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Patient Care</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Personalized consultation and medication management services.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service Icons -->
+            <div class="service-icons">
+                <div class="service-icon">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=center" alt="Expert Care">
+                    <div class="service-label">Expert Care</div>
+                </div>
+                <div class="service-icon">
+                    <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=150&h=150&fit=crop&crop=center" alt="Fast Delivery">
+                    <div class="service-label">Fast Delivery</div>
+                </div>
+                <div class="service-icon">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=150&h=150&fit=crop&crop=center" alt="Quality Medications">
+                    <div class="service-label">Quality Meds</div>
+                </div>
+                <div class="service-icon">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=150&h=150&fit=crop&crop=center" alt="24/7 Support">
+                    <div class="service-label">24/7 Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <!-- Pharmacy Image -->
+                <div class="info-image relative">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=center" alt="GreenCare Pharmacy storefront">
+                </div>
+                
+                <!-- Info -->
+                <div>
+                    <h2 class="section-title mb-6">Visit Us</h2>
+                    <div class="space-y-4">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium">Location</p>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem;">123 Health Street<br>Medical City, MC 12345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium">Call Us</p>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem;">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium">Open Hours</p>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem;">Mon-Fri: 8AM-9PM<br>Weekends: 9AM-7PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Order Card -->
+                <div class="quick-order-card text-center">
+                    <div class="quick-order-icon"></div>
+                    <h3 class="font-bold mb-2">Quick Order</h3>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1.5rem;">
+                        Browse & order online
+                    </p>
+                    <a href="medicines.html" class="btn btn-primary w-full">
+                        Shop Now
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 0.5rem;">
+                            <path d="M5 12h14m-7-7 7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Happy Customers</h2>
+                <p class="section-subtitle">Real stories from real people</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-cols-3 gap-8">
+                <div class="card testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b9e3?w=60&h=60&fit=crop&crop=face" alt="Sarah Johnson" class="testimonial-avatar">
+                        <div>
+                            <p class="font-medium">Sarah Johnson</p>
+                            <div class="testimonial-rating">
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="testimonial-text">"Excellent service! The staff is knowledgeable and always helpful with my prescriptions."</p>
+                    
+                    <div class="verified-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        Verified Customer
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Mike Davis" class="testimonial-avatar">
+                        <div>
+                            <p class="font-medium">Mike Davis</p>
+                            <div class="testimonial-rating">
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="testimonial-text">"Quick and professional. I never have to wait long, and they always have what I need."</p>
+                    
+                    <div class="verified-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        Verified Customer
+                    </div>
+                </div>
+                
+                <div class="card testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Emily Chen" class="testimonial-avatar">
+                        <div>
+                            <p class="font-medium">Emily Chen</p>
+                            <div class="testimonial-rating">
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="testimonial-text">"The pharmacists here really care about their patients. Great advice and service!"</p>
+                    
+                    <div class="verified-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        Verified Customer
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Customer Gallery -->
+            <div class="customer-gallery">
+                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1.5rem;">Join thousands of satisfied customers</p>
+                <div class="customer-avatars">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b9e3?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=40&h=40&fit=crop&crop=face" alt="Customer" class="customer-avatar">
+                    <div class="customer-count">+2k</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-bg-1"></div>
+        <div class="cta-bg-2"></div>
+        
+        <div class="container cta-content">
+            <div class="cta-grid">
+                <!-- CTA Content -->
+                <div class="text-center text-left">
+                    <h2 class="section-title mb-4">Ready to Start?</h2>
+                    <p class="hero-subtitle mb-8 opacity-90">
+                        Browse medications or get personalized care
+                    </p>
+                    <div class="cta-actions">
+                        <a href="medicines.html" class="btn btn-secondary btn-lg">
+                            Browse Medications
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 0.5rem;">
+                                <path d="M5 12h14m-7-7 7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="contact.html" class="btn btn-cta-outline btn-lg">Get in Touch</a>
+                    </div>
+                </div>
+                
+                <!-- Visual Element -->
+                <div class="cta-visual">
+                    <div class="cta-image-card">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=300&fit=crop&crop=center" alt="Healthcare team" class="cta-image">
+                        
+                        <!-- Floating Stats -->
+                        <div class="cta-floating-1">
+                            <div class="text-2xl font-bold">24/7</div>
+                            <div class="text-xs">Available</div>
+                        </div>
+                        
+                        <div class="cta-floating-2">
+                            <div class="text-2xl font-bold">10k+</div>
+                            <div class="text-xs">Happy Customers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg-1"></div>
+        <div class="footer-bg-2"></div>
+        
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <div class="footer-logo"></div>
+                        <h3>GreenCare</h3>
+                    </div>
+                    <p class="opacity-90" style="font-size: 0.875rem;">
+                        Trusted healthcare since 2001
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon"></div>
+                        Quick Links
+                    </h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="medicines.html">Medicines</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon round"></div>
+                        Services
+                    </h4>
+                    <ul class="service-list">
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Prescriptions</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Consultations</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Delivery</span>
+                        </li>
+                        <li class="service-item">
+                            <div class="service-dot"></div>
+                            <span>Health Screenings</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>
+                        <div class="footer-icon"></div>
+                        Contact
+                    </h4>
+                    <div style="font-size: 0.875rem; opacity: 0.9;">
+                        <p>123 Health Street</p>
+                        <p>Medical City, MC 12345</p>
+                        <p>(555) 123-4567</p>
+                        <p>info@greencare.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 GreenCare Pharmacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
