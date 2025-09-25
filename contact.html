@@ -186,6 +186,32 @@
             font-size: 0.875rem;
             opacity: 0.9;
         }
+        .above img {         /* adjust percentage as needed */
+            max-width: 50px;    /* optional cap */
+            height: auto;        /* keep aspect ratio */
+           
+            margin: 0 auto;      /* center the image */
+        }
+        .map-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.map-image {
+    width: 100%;
+    display: block;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.map-image:hover {
+    transform: scale(1.03);
+}
+
     </style>
 </head>
 <body>
@@ -237,8 +263,9 @@
             <section class="about-hero">
                 <h1 class="section-title mb-4">Contact Us</h1>
                 <p class="section-subtitle">
-                    Get in touch with our team for any questions, concerns, or assistance you need
+                    Get in touch with our team for any questions, concerns, or assistance  you need
                 </p>
+              
             </section>
 
             <!-- Emergency Banner -->
@@ -439,35 +466,31 @@
                 </div>
 
                 <!-- Map/Location -->
-                <div>
-                    <h2 class="section-title mb-6" id="directions">Find Us</h2>
-                    <div class="map-container">
-                        <div class="map-placeholder">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <p class="mt-2 font-medium">Interactive Map</p>
-                            <p class="text-sm">123 Health Street, Medical City, MC 12345</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4 space-y-2">
-                        <a href="https://maps.google.com/?q=123+Health+Street+Medical+City+MC+12345" 
-                           target="_blank" class="btn btn-outline w-full">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Get Directions
-                        </a>
-                        
-                        <div class="text-sm text-muted-foreground text-center">
-                            <p><strong>Parking:</strong> Free parking available in front and back of building</p>
-                            <p><strong>Accessibility:</strong> Wheelchair accessible entrance and facilities</p>
-                        </div>
-                    </div>
-                </div>
+              <div>
+    <h2 class="section-title mb-6" id="directions">Find Us</h2>
+    <div class="map-container">
+        <a href="https://www.google.com/maps/place/Agahozo-Shalom+Youth+Village/@-2.0331936,30.3810162,17z/data=!3m1!4b1!4m6!3m5!1s0x19db4e5bfebf91b5:0xe20a1f1d56820c8!8m2!3d-2.033199!4d30.3835911!16s%2Fg%2F1hc165ghx?entry=ttu&g_ep=EgoyMDI1MDkyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+            <img src="https://i.ytimg.com/vi/lLWHP_mNqQM/maxresdefault.jpg" 
+                 alt="Agahozo-Shalom Youth Village" class="map-image" />
+        </a>
+    </div>
+
+    <div class="mt-4 space-y-2">
+        <a href="https://www.google.com/maps/place/Agahozo-Shalom+Youth+Village/@-2.0331936,30.3810162,17z" 
+           target="_blank" class="btn btn-outline w-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Get Directions
+        </a>
+        <div class="text-sm text-muted-foreground text-center">
+            <p><strong>Parking:</strong> Free parking available in front and back of building</p>
+            <p><strong>Accessibility:</strong> Wheelchair accessible entrance and facilities</p>
+        </div>
+    </div>
+</div>
+
             </div>
 
             <!-- Additional Information -->
@@ -585,7 +608,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 GreenCare Pharmacy. All rights reserved.</p>
+                <p>&copy; 2025 GreenCare Pharmacy. All rights reserved.</p>
             </div>
         </div>
     </footer>
