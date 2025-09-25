@@ -3,23 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - GreenCare Pharmacy</title>
+    <title>Admin Dashboard - GreenCare Pharmacy</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .contact-page {
+        .admin-page {
             padding-top: 5rem;
+            min-height: 100vh;
+            background: #f8fafc;
         }
         
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary), rgba(5, 150, 105, 0.9));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-header.scrolled {
+            background: rgba(5, 150, 105, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        .form-group {
+        .admin-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .admin-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .admin-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .dashboard-content {
+            padding: 2rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-title {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            font-weight: 500;
+        }
+        
+        .stat-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-change {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .stat-change.positive {
+            color: #10b981;
+        }
+        
+        .stat-change.negative {
+            color: #ef4444;
+        }
+        
+        .tabs {
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-list {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-weight: 500;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(5, 150, 105, 0.02);
+        }
+        
+        .tab-button:hover {
+            color: var(--primary);
+            background: rgba(5, 150, 105, 0.02);
+        }
+        
+        .tab-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            background: var(--secondary);
+            font-weight: 600;
+            color: var(--foreground);
+            font-size: 0.875rem;
+        }
+        
+        .data-table td {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(5, 150, 105, 0.02);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-completed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .form-inline {
+            display: flex;
+            gap: 1rem;
+            align-items: end;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .form-inline .form-group {
+            margin-bottom: 0;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-action-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .quick-action-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            color: var(--primary);
+        }
+        
+        .quick-action-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.2));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .quick-action-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-action-desc {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            border: 1px solid;
+        }
+        
+        .alert-info {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            color: #1e40af;
+        }
+        
+        .alert-warning {
+            background: #fffbeb;
+            border-color: #fed7aa;
+            color: #92400e;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted-foreground);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
         }
         
         .form-label {
@@ -30,566 +381,681 @@
         }
         
         .form-input,
-        .form-textarea,
-        .form-select {
+        .form-select,
+        .form-textarea {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            font-size: 1rem;
+            font-size: 0.875rem;
             background: var(--input-background);
-            transition: border-color 0.2s ease;
         }
         
         .form-input:focus,
-        .form-textarea:focus,
-        .form-select:focus {
+        .form-select:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
         }
-        
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .contact-info-card {
-            background: linear-gradient(135deg, white, rgba(240, 253, 244, 0.1));
-            padding: 2rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-info-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .contact-icon {
-            width: 4rem;
-            height: 4rem;
-            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.2));
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-        
-        .contact-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--foreground);
-        }
-        
-        .contact-details {
-            color: var(--muted-foreground);
-        }
-        
-        .hours-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .hours-table th,
-        .hours-table td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .hours-table th {
-            background: var(--secondary);
-            font-weight: 600;
-            color: var(--foreground);
-        }
-        
-        .hours-table td {
-            color: var(--muted-foreground);
-        }
-        
-        .map-container {
-            width: 100%;
-            height: 300px;
-            background: var(--muted);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted-foreground);
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .map-placeholder {
-            text-align: center;
-        }
-        
-        .emergency-banner {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-            padding: 1rem;
-            border-radius: var(--radius);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        .emergency-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .emergency-text {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-        
-        .quick-contact {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .quick-contact-item {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            border-radius: var(--radius);
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .quick-contact-item:hover {
-            background: rgba(5, 150, 105, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .quick-contact-icon {
-            margin-bottom: 0.5rem;
-        }
-        
-        .quick-contact-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        
-        .quick-contact-details {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Admin Header -->
+    <header class="admin-header" id="adminHeader">
         <div class="container">
-            <div class="header-content">
-                <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <div class="logo-main">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2v6m0 8v6m-6-12h6m8 0h-6M8 8l8 8m0-8l-8 8"/>
-                            </svg>
-                        </div>
-                        <div class="logo-badge"></div>
+            <div class="admin-nav">
+                <div class="admin-logo">
+                    <div class="admin-logo-icon">
+                        <span style="font-weight: bold; color: white;">GC</span>
                     </div>
-                    <div class="logo-text">
-                        <div class="logo-title">GreenCare</div>
-                        <div class="logo-subtitle">Pharmacy</div>
-                    </div>
-                </a>
-
-                <!-- Navigation -->
-                <nav class="nav">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="medicines.html" class="nav-link">Medicines</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="services.html" class="nav-link">Services</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
-
-                <!-- Right Section -->
-                <div class="flex items-center gap-4">
-                    <div class="status-indicator">
-                        <div class="status-dot"></div>
-                        <span>Online</span>
-                    </div>
-                    <a href="login.html" class="btn btn-primary">Staff Login</a>
+                    <h1 class="admin-title">Admin Dashboard</h1>
                 </div>
+                <a href="index.html" class="logout-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14l5-5-5-5m5 5H9"/>
+                    </svg>
+                    Logout
+                </a>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="contact-page">
-        <div class="container">
-            <!-- Hero Section -->
-            <section class="about-hero">
-                <h1 class="section-title mb-4">Contact Us</h1>
-                <p class="section-subtitle">
-                    Get in touch with our team for any questions, concerns, or assistance you need
-                </p>
-            </section>
-
-            <!-- Emergency Banner -->
-            <div class="emergency-banner">
-                <div class="emergency-title">Medical Emergency?</div>
-                <div class="emergency-text">
-                    For medical emergencies, call 911 immediately. For urgent medication questions after hours, call our 24/7 hotline: (555) 123-HELP
-                </div>
-            </div>
-
-            <!-- Quick Contact Options -->
-            <div class="quick-contact">
-                <a href="tel:5551234567" class="quick-contact-item">
-                    <div class="quick-contact-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                        </svg>
-                    </div>
-                    <div class="quick-contact-title">Call Us</div>
-                    <div class="quick-contact-details">(555) 123-4567</div>
-                </a>
-
-                <a href="mailto:info@greencare.com" class="quick-contact-item">
-                    <div class="quick-contact-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <polyline points="22,6 12,13 2,6"/>
-                        </svg>
-                    </div>
-                    <div class="quick-contact-title">Email Us</div>
-                    <div class="quick-contact-details">info@greencare.com</div>
-                </a>
-
-                <a href="https://wa.me/5551234567" class="quick-contact-item">
-                    <div class="quick-contact-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                        </svg>
-                    </div>
-                    <div class="quick-contact-title">WhatsApp</div>
-                    <div class="quick-contact-details">Quick Chat</div>
-                </a>
-
-                <a href="#directions" class="quick-contact-item">
-                    <div class="quick-contact-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                    </div>
-                    <div class="quick-contact-title">Visit Us</div>
-                    <div class="quick-contact-details">Get Directions</div>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 grid-cols-2 gap-8 mb-16">
-                <!-- Contact Form -->
-                <div>
-                    <h2 class="section-title mb-6">Send us a Message</h2>
-                    <form class="contact-form" onsubmit="handleContactForm(event)">
-                        <div class="form-group">
-                            <label class="form-label" for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" class="form-input" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-input" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="subject">Subject *</label>
-                            <select id="subject" name="subject" class="form-select" required>
-                                <option value="">Select a subject</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="prescription">Prescription Question</option>
-                                <option value="delivery">Delivery Service</option>
-                                <option value="consultation">Schedule Consultation</option>
-                                <option value="insurance">Insurance & Billing</option>
-                                <option value="complaint">Complaint or Feedback</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="message">Message *</label>
-                            <textarea id="message" name="message" class="form-textarea" 
-                                      placeholder="Please provide details about your inquiry..." required></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="flex items-center gap-2">
-                                <input type="checkbox" name="newsletter" value="yes">
-                                <span class="font-normal">Subscribe to our newsletter for health tips and updates</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-full">Send Message</button>
-                    </form>
-                </div>
-
-                <!-- Contact Information -->
-                <div>
-                    <h2 class="section-title mb-6">Get in Touch</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="contact-info-card">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                            </div>
-                            <h3 class="contact-title">Visit Our Pharmacy</h3>
-                            <div class="contact-details">
-                                <p>123 Health Street</p>
-                                <p>Medical City, MC 12345</p>
-                                <p>United States</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-card">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
-                            </div>
-                            <h3 class="contact-title">Call Us</h3>
-                            <div class="contact-details">
-                                <p><strong>Main:</strong> (555) 123-4567</p>
-                                <p><strong>24/7 Hotline:</strong> (555) 123-HELP</p>
-                                <p><strong>Fax:</strong> (555) 123-4568</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-card">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <polyline points="22,6 12,13 2,6"/>
-                                </svg>
-                            </div>
-                            <h3 class="contact-title">Email Us</h3>
-                            <div class="contact-details">
-                                <p><strong>General:</strong> info@greencare.com</p>
-                                <p><strong>Prescriptions:</strong> rx@greencare.com</p>
-                                <p><strong>Support:</strong> support@greencare.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hours and Location -->
-            <div class="grid grid-cols-1 grid-cols-2 gap-8 mb-16">
-                <!-- Operating Hours -->
-                <div>
-                    <h2 class="section-title mb-6">Operating Hours</h2>
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                        <table class="hours-table">
-                            <thead>
-                                <tr>
-                                    <th>Day</th>
-                                    <th>Hours</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Monday - Friday</td>
-                                    <td>8:00 AM - 9:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Saturday</td>
-                                    <td>9:00 AM - 7:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Sunday</td>
-                                    <td>10:00 AM - 6:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Holidays</td>
-                                    <td>Varies (Call for hours)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                            <p class="text-sm text-green-800">
-                                <strong>Emergency Services:</strong> Our 24/7 hotline is available for urgent medication questions outside regular hours.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Map/Location -->
-                <div>
-                    <h2 class="section-title mb-6" id="directions">Find Us</h2>
-                    <div class="map-container">
-                        <div class="map-placeholder">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <p class="mt-2 font-medium">Interactive Map</p>
-                            <p class="text-sm">123 Health Street, Medical City, MC 12345</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4 space-y-2">
-                        <a href="https://maps.google.com/?q=123+Health+Street+Medical+City+MC+12345" 
-                           target="_blank" class="btn btn-outline w-full">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Get Directions
-                        </a>
-                        
-                        <div class="text-sm text-muted-foreground text-center">
-                            <p><strong>Parking:</strong> Free parking available in front and back of building</p>
-                            <p><strong>Accessibility:</strong> Wheelchair accessible entrance and facilities</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Information -->
-            <div class="bg-gradient-to-r from-secondary/40 to-accent/20 p-8 rounded-lg">
-                <div class="text-center mb-6">
-                    <h2 class="section-title mb-4">Need Immediate Assistance?</h2>
-                    <p class="section-subtitle">Our team is here to help you with all your pharmaceutical needs</p>
-                </div>
-                
-                <div class="grid grid-cols-1 grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <div class="contact-icon mx-auto mb-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold mb-2">Quick Response</h3>
-                        <p class="text-sm text-muted-foreground">We respond to all inquiries within 24 hours during business days</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="contact-icon mx-auto mb-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+    <main class="admin-page">
+        <div class="container dashboard-content">
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Customers</div>
+                        <div class="stat-icon" style="background: #dbeafe;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                                 <circle cx="9" cy="7" r="4"/>
                                 <path d="m22 21-3-3m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
                             </svg>
                         </div>
-                        <h3 class="font-semibold mb-2">Expert Support</h3>
-                        <p class="text-sm text-muted-foreground">Licensed pharmacists available for consultations and advice</p>
                     </div>
-                    
-                    <div class="text-center">
-                        <div class="contact-icon mx-auto mb-3">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+                            <polyline points="17,6 23,6 23,12"/>
+                        </svg>
+                        +12% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Orders Today</div>
+                        <div class="stat-icon" style="background: #dcfce7;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L6 8H21l-3.5 7H7z"/>
+                                <circle cx="9.5" cy="19.5" r="1.5"/>
+                                <circle cx="20.5" cy="19.5" r="1.5"/>
                             </svg>
                         </div>
-                        <h3 class="font-semibold mb-2">Confidential</h3>
-                        <p class="text-sm text-muted-foreground">All communications are kept strictly confidential and secure</p>
                     </div>
+                    <div class="stat-value">47</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+                            <polyline points="17,6 23,6 23,12"/>
+                        </svg>
+                        +8% from yesterday
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Revenue This Month</div>
+                        <div class="stat-icon" style="background: #fef3c7;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">$18,742</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+                            <polyline points="17,6 23,6 23,12"/>
+                        </svg>
+                        +23% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Active Pharmacists</div>
+                        <div class="stat-icon" style="background: #e0e7ff;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2">
+                                <path d="M12 2v6m0 8v6m-6-12h6m8 0h-6M8 8l8 8m0-8l-8 8"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-change">
+                        <span style="color: var(--muted-foreground);">Currently online</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="quick-action-card" onclick="openModal('addPharmacistModal')">
+                    <div class="quick-action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <line x1="19" y1="8" x2="19" y2="14"/>
+                            <line x1="22" y1="11" x2="16" y2="11"/>
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">Add Pharmacist</div>
+                    <div class="quick-action-desc">Register new staff member</div>
+                </div>
+
+                <div class="quick-action-card" onclick="switchTab('medicines')">
+                    <div class="quick-action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                            <path d="M12 2v6m0 8v6m-6-12h6m8 0h-6M8 8l8 8m0-8l-8 8"/>
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">Manage Medicines</div>
+                    <div class="quick-action-desc">Update inventory & prices</div>
+                </div>
+
+                <div class="quick-action-card" onclick="switchTab('orders')">
+                    <div class="quick-action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                            <path d="M9 11H7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-2M9 11V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M9 11h6"/>
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">View Orders</div>
+                    <div class="quick-action-desc">Monitor all transactions</div>
+                </div>
+
+                <div class="quick-action-card" onclick="switchTab('patients')">
+                    <div class="quick-action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="m22 21-3-3m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                        </svg>
+                    </div>
+                    <div class="quick-action-title">Patient Records</div>
+                    <div class="quick-action-desc">Access customer data</div>
+                </div>
+            </div>
+
+            <!-- Main Tabs -->
+            <div class="tabs">
+                <div class="tab-list">
+                    <button class="tab-button active" onclick="switchTab('overview')">Overview</button>
+                    <button class="tab-button" onclick="switchTab('pharmacists')">Pharmacists</button>
+                    <button class="tab-button" onclick="switchTab('medicines')">Medicines</button>
+                    <button class="tab-button" onclick="switchTab('orders')">Orders</button>
+                    <button class="tab-button" onclick="switchTab('patients')">Patients</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active">
+                    <h3 style="margin-bottom: 1rem;">System Overview</h3>
+                    
+                    <div class="alert alert-info">
+                        <strong>System Status:</strong> All systems operational. Last backup completed at 2:30 AM today.
+                    </div>
+                    
+                    <div class="grid grid-cols-1 grid-cols-2 gap-6">
+                        <div>
+                            <h4 style="margin-bottom: 1rem;">Recent Activity</h4>
+                            <div class="space-y-3">
+                                <div style="padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem; border-left: 3px solid var(--primary);">
+                                    <div style="font-weight: 500; font-size: 0.875rem;">New pharmacist registered</div>
+                                    <div style="font-size: 0.75rem; color: var(--muted-foreground);">Dr. Smith joined the team - 2 hours ago</div>
+                                </div>
+                                <div style="padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem; border-left: 3px solid #10b981;">
+                                    <div style="font-weight: 500; font-size: 0.875rem;">Inventory updated</div>
+                                    <div style="font-size: 0.75rem; color: var(--muted-foreground);">50 new medications added - 4 hours ago</div>
+                                </div>
+                                <div style="padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem; border-left: 3px solid #f59e0b;">
+                                    <div style="font-weight: 500; font-size: 0.875rem;">System maintenance</div>
+                                    <div style="font-size: 0.75rem; color: var(--muted-foreground);">Scheduled for tonight at 11 PM - 6 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 1rem;">Quick Stats</h4>
+                            <div class="space-y-2">
+                                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                                    <span style="color: var(--muted-foreground);">Pending Orders</span>
+                                    <span style="font-weight: 600;">23</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                                    <span style="color: var(--muted-foreground);">Low Stock Items</span>
+                                    <span style="font-weight: 600; color: #f59e0b;">8</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                                    <span style="color: var(--muted-foreground);">Today's Revenue</span>
+                                    <span style="font-weight: 600; color: #10b981;">$1,247</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                                    <span style="color: var(--muted-foreground);">Active Staff</span>
+                                    <span style="font-weight: 600;">12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pharmacists Tab -->
+                <div id="pharmacists" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Pharmacist Management</h3>
+                        <button class="btn btn-primary" onclick="openModal('addPharmacistModal')">Add New Pharmacist</button>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>License #</th>
+                                <th>Status</th>
+                                <th>Last Login</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pharmacistsTable">
+                            <tr>
+                                <td>Dr. Sarah Mitchell</td>
+                                <td>sarah.mitchell@greencare.com</td>
+                                <td>PH12345</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>2 hours ago</td>
+                                <td>
+                                    <button class="action-btn">Edit</button>
+                                    <button class="action-btn">Suspend</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Michael Chen</td>
+                                <td>michael.chen@greencare.com</td>
+                                <td>PH12346</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>1 day ago</td>
+                                <td>
+                                    <button class="action-btn">Edit</button>
+                                    <button class="action-btn">Suspend</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Lisa Rodriguez</td>
+                                <td>lisa.rodriguez@greencare.com</td>
+                                <td>PH12347</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>Never</td>
+                                <td>
+                                    <button class="action-btn">Activate</button>
+                                    <button class="action-btn">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Medicines Tab -->
+                <div id="medicines" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3>Medicine Inventory</h3>
+                        <button class="btn btn-primary" onclick="openModal('addMedicineModal')">Add Medicine</button>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <strong>Low Stock Alert:</strong> 8 medications are running low on stock. Consider restocking soon.
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Price</th>
+                                <th>Expiry Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ibuprofen 200mg</td>
+                                <td>Pain Relief</td>
+                                <td style="color: #f59e0b; font-weight: 600;">12</td>
+                                <td>$12.99</td>
+                                <td>Dec 2025</td>
+                                <td>
+                                    <button class="action-btn">Edit</button>
+                                    <button class="action-btn">Restock</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin C 1000mg</td>
+                                <td>Vitamins</td>
+                                <td style="color: #10b981; font-weight: 600;">156</td>
+                                <td>$15.99</td>
+                                <td>Nov 2025</td>
+                                <td>
+                                    <button class="action-btn">Edit</button>
+                                    <button class="action-btn">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cold Relief Tablets</td>
+                                <td>Cold & Flu</td>
+                                <td style="color: #10b981; font-weight: 600;">89</td>
+                                <td>$8.99</td>
+                                <td>Jan 2026</td>
+                                <td>
+                                    <button class="action-btn">Edit</button>
+                                    <button class="action-btn">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Orders Tab -->
+                <div id="orders" class="tab-content">
+                    <h3 style="margin-bottom: 1.5rem;">Order Management</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Medicine</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-001</td>
+                                <td>John Smith</td>
+                                <td>Ibuprofen 200mg</td>
+                                <td>2</td>
+                                <td>$25.98</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>Today</td>
+                                <td>
+                                    <button class="action-btn">Process</button>
+                                    <button class="action-btn">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-002</td>
+                                <td>Emma Johnson</td>
+                                <td>Vitamin C 1000mg</td>
+                                <td>1</td>
+                                <td>$15.99</td>
+                                <td><span class="status-badge status-completed">Completed</span></td>
+                                <td>Yesterday</td>
+                                <td>
+                                    <button class="action-btn">View</button>
+                                    <button class="action-btn">Receipt</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-003</td>
+                                <td>Mike Davis</td>
+                                <td>Cold Relief Tablets</td>
+                                <td>3</td>
+                                <td>$26.97</td>
+                                <td><span class="status-badge status-completed">Completed</span></td>
+                                <td>Yesterday</td>
+                                <td>
+                                    <button class="action-btn">View</button>
+                                    <button class="action-btn">Receipt</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Patients Tab -->
+                <div id="patients" class="tab-content">
+                    <h3 style="margin-bottom: 1.5rem;">Patient Information</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Last Order</th>
+                                <th>Total Orders</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Smith</td>
+                                <td>john.smith@email.com</td>
+                                <td>(555) 123-4567</td>
+                                <td>Today</td>
+                                <td>12</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="action-btn">View Profile</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Emma Johnson</td>
+                                <td>emma.johnson@email.com</td>
+                                <td>(555) 234-5678</td>
+                                <td>Yesterday</td>
+                                <td>8</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="action-btn">View Profile</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mike Davis</td>
+                                <td>mike.davis@email.com</td>
+                                <td>(555) 345-6789</td>
+                                <td>2 days ago</td>
+                                <td>15</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="action-btn">View Profile</button>
+                                    <button class="action-btn">Contact</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-bg-1"></div>
-        <div class="footer-bg-2"></div>
-        
-        <div class="container footer-content">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-brand">
-                        <div class="footer-logo"></div>
-                        <h3>GreenCare</h3>
-                    </div>
-                    <p class="opacity-90" style="font-size: 0.875rem;">
-                        Trusted healthcare since 2001
-                    </p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>
-                        <div class="footer-icon"></div>
-                        Quick Links
-                    </h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="medicines.html">Medicines</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>
-                        <div class="footer-icon round"></div>
-                        Services
-                    </h4>
-                    <ul class="service-list">
-                        <li class="service-item">
-                            <div class="service-dot"></div>
-                            <span>Prescriptions</span>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-dot"></div>
-                            <span>Consultations</span>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-dot"></div>
-                            <span>Delivery</span>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-dot"></div>
-                            <span>Health Screenings</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>
-                        <div class="footer-icon"></div>
-                        Contact
-                    </h4>
-                    <div style="font-size: 0.875rem; opacity: 0.9;">
-                        <p>123 Health Street</p>
-                        <p>Medical City, MC 12345</p>
-                        <p>(555) 123-4567</p>
-                        <p>info@greencare.com</p>
-                    </div>
-                </div>
+    <!-- Add Pharmacist Modal -->
+    <div id="addPharmacistModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Pharmacist</h2>
+                <button class="close-btn" onclick="closeModal('addPharmacistModal')">&times;</button>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2024 GreenCare Pharmacy. All rights reserved.</p>
-            </div>
+            <form onsubmit="handleAddPharmacist(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-input" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-input" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">License Number *</label>
+                    <input type="text" class="form-input" name="license" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Specialization</label>
+                    <select class="form-select" name="specialization">
+                        <option value="">Select specialization</option>
+                        <option value="clinical">Clinical Pharmacy</option>
+                        <option value="retail">Retail Pharmacy</option>
+                        <option value="hospital">Hospital Pharmacy</option>
+                        <option value="geriatric">Geriatric Pharmacy</option>
+                    </select>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button type="submit" class="btn btn-primary flex-1">Add Pharmacist</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('addPharmacistModal')">Cancel</button>
+                </div>
+            </form>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- Add Medicine Modal -->
+    <div id="addMedicineModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Medicine</h2>
+                <button class="close-btn" onclick="closeModal('addMedicineModal')">&times;</button>
+            </div>
+            
+            <form onsubmit="handleAddMedicine(event)">
+                <div class="form-group">
+                    <label class="form-label">Medicine Name *</label>
+                    <input type="text" class="form-input" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Category *</label>
+                    <select class="form-select" name="category" required>
+                        <option value="">Select category</option>
+                        <option value="pain-relief">Pain Relief</option>
+                        <option value="cold-flu">Cold & Flu</option>
+                        <option value="vitamins">Vitamins</option>
+                        <option value="digestive">Digestive Health</option>
+                        <option value="skincare">Skincare</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Price *</label>
+                    <input type="number" class="form-input" name="price" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Stock Quantity *</label>
+                    <input type="number" class="form-input" name="stock" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" name="description" rows="3"></textarea>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button type="submit" class="btn btn-primary flex-1">Add Medicine</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('addMedicineModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('adminHeader');
+            
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+        });
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form handlers
+        function handleAddPharmacist(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const pharmacistData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                license: formData.get('license'),
+                phone: formData.get('phone'),
+                specialization: formData.get('specialization')
+            };
+            
+            // Add to table (in real app, this would be an API call)
+            const tableBody = document.getElementById('pharmacistsTable');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${pharmacistData.name}</td>
+                <td>${pharmacistData.email}</td>
+                <td>${pharmacistData.license}</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+                <td>Never</td>
+                <td>
+                    <button class="action-btn">Activate</button>
+                    <button class="action-btn">Edit</button>
+                </td>
+            `;
+            tableBody.appendChild(newRow);
+            
+            alert(`Pharmacist ${pharmacistData.name} has been added successfully!`);
+            closeModal('addPharmacistModal');
+            event.target.reset();
+        }
+
+        function handleAddMedicine(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const medicineData = {
+                name: formData.get('name'),
+                category: formData.get('category'),
+                price: formData.get('price'),
+                stock: formData.get('stock'),
+                description: formData.get('description')
+            };
+            
+            alert(`Medicine ${medicineData.name} has been added to inventory!`);
+            closeModal('addMedicineModal');
+            event.target.reset();
+        }
+    </script>
 </body>
 </html>
