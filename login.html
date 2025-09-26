@@ -6,63 +6,68 @@
     <title>Staff Login - GreenCare Pharmacy</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .login-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(220, 252, 231, 0.2));
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .login-page::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23059669' fill-opacity='0.05'/%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-        
-        .login-bg-1 {
-            position: absolute;
-            top: 10%;
-            right: 10%;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(220, 252, 231, 0.2));
-            border-radius: 50%;
-            filter: blur(40px);
-        }
-        
-        .login-bg-2 {
-            position: absolute;
-            bottom: 10%;
-            left: 10%;
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, rgba(220, 252, 231, 0.3), rgba(5, 150, 105, 0.1));
-            border-radius: 50%;
-            filter: blur(30px);
-        }
-        
-        .login-container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        .login-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 1.5rem;
-            padding: 3rem 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
+            .login-page {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(220, 252, 231, 0.2));
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .login-page::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23059669' fill-opacity='0.05'/%3E%3C/svg%3E");
+                opacity: 0.4;
+            }
+            
+            .login-bg-1 {
+                position: absolute;
+                top: 10%;
+                right: 10%;
+                width: 300px;
+                height: 300px;
+                background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(220, 252, 231, 0.2));
+                border-radius: 50%;
+                filter: blur(40px);
+            }
+            
+            .login-bg-2 {
+                position: absolute;
+                bottom: 10%;
+                left: 10%;
+                width: 250px;
+                height: 250px;
+                background: linear-gradient(135deg, rgba(220, 252, 231, 0.3), rgba(5, 150, 105, 0.1));
+                border-radius: 50%;
+                filter: blur(30px);
+            }
+            
+            .login-container {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                max-width: 480px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+            
+            .login-card {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 1.5rem;
+                padding: 2rem;                 /* slightly reduced, still spacious */
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                max-width: 450px;              /* narrower card */
+                max-height: auto;             /* shorter card */
+                                /* keep responsive */
+            }
+
+
         
         .login-header {
             text-align: center;
@@ -312,11 +317,11 @@
                 </div>
 
                 <!-- Demo Credentials -->
-                <div class="demo-credentials">
+                <!-- <div class="demo-credentials">
                     <div class="demo-title">Demo Access</div>
                     <div class="demo-item"><strong>Admin:</strong> admin@greencare.com / admin123</div>
                     <div class="demo-item"><strong>Pharmacist:</strong> pharmacist@greencare.com / pharma123</div>
-                </div>
+                </div> -->
 
                 <form onsubmit="handleStaffLogin(event)">
                     <div class="form-group">
@@ -359,7 +364,7 @@
                     <button type="submit" class="login-btn">Sign In</button>
                 </form>
 
-                <div class="security-notice">
+                <!-- <div class="security-notice">
                     <div class="security-notice-title">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -370,7 +375,7 @@
                         This portal is for authorized GreenCare Pharmacy staff only. 
                         All activities are logged and monitored for security purposes.
                     </p>
-                </div>
+                </div> -->
 
                 <div class="back-home">
                     <a href="index.html">
