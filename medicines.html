@@ -237,164 +237,16 @@
             <!-- Category Filters -->
             <div class="categories">
                 <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="pain-relief">Pain Relief</button>
-                <button class="category-btn" data-category="cold-flu">Cold & Flu</button>
-                <button class="category-btn" data-category="vitamins">Vitamins</button>
-                <button class="category-btn" data-category="digestive">Digestive Health</button>
-                <button class="category-btn" data-category="skincare">Skincare</button>
             </div>
 
-            <!-- Medicines Grid -->
+            <!-- Medicines Grid (rendered dynamically from backend) -->
             <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-6" id="medicinesGrid">
-                <!-- Medicine 1 -->
-                <div class="medicine-card" data-category="pain-relief">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" alt="Ibuprofen" class="medicine-image">
-                    <div class="medicine-category">Pain Relief</div>
-                    <h3 class="medicine-title">Ibuprofen 200mg</h3>
-                    <div class="medicine-price">$12.99</div>
-                    <p class="medicine-description">Effective pain relief and anti-inflammatory medication for headaches, muscle pain, and fever reduction.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Ibuprofen 200mg', '$12.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 2 -->
-                <div class="medicine-card" data-category="cold-flu">
-                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" alt="Cold Relief" class="medicine-image">
-                    <div class="medicine-category">Cold & Flu</div>
-                    <h3 class="medicine-title">Cold Relief Tablets</h3>
-                    <div class="medicine-price">$8.99</div>
-                    <p class="medicine-description">Multi-symptom cold and flu relief including congestion, runny nose, and sore throat.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Cold Relief Tablets', '$8.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 3 -->
-                <div class="medicine-card" data-category="vitamins">
-                    <img src="https://www.oaklifevitamins.com/cdn/shop/files/CALGOVITVIT-C_2048x.jpg?v=1684760696" alt="Vitamin C" class="medicine-image">
-                    <div class="medicine-category">Vitamins</div>
-                    <h3 class="medicine-title">Vitamin C 1000mg</h3>
-                    <div class="medicine-price">$15.99</div>
-                    <p class="medicine-description">High-potency Vitamin C supplements to support immune system health and antioxidant protection.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Vitamin C 1000mg', '$15.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 4 -->
-                <div class="medicine-card" data-category="digestive">
-                    <img src="https://m.media-amazon.com/images/I/71GSrqNsCBL._UF1000,1000_QL80_.jpg" alt="Antacid" class="medicine-image">
-                    <div class="medicine-category">Digestive Health</div>
-                    <h3 class="medicine-title">Antacid Chewable</h3>
-                    <div class="medicine-price">$6.99</div>
-                    <p class="medicine-description">Fast-acting antacid for heartburn, acid indigestion, and upset stomach relief.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Antacid Chewable', '$6.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 5 -->
-                <div class="medicine-card" data-category="skincare">
-                    <img src="https://images.unsplash.com/photo-1596522016734-8e6136fe5cfa?w=400&h=300&fit=crop" alt="Hydrocortisone Cream" class="medicine-image">
-                    <div class="medicine-category">Skincare</div>
-                    <h3 class="medicine-title">Hydrocortisone Cream</h3>
-                    <div class="medicine-price">$9.99</div>
-                    <p class="medicine-description">Topical anti-inflammatory cream for eczema, rashes, and minor skin irritations.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Hydrocortisone Cream', '$9.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 6 -->
-                <div class="medicine-card" data-category="pain-relief">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Acetaminophen" class="medicine-image">
-                    <div class="medicine-category">Pain Relief</div>
-                    <h3 class="medicine-title">Acetaminophen 500mg</h3>
-                    <div class="medicine-price">$10.99</div>
-                    <p class="medicine-description">Gentle pain reliever and fever reducer, safe for most adults and children.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Acetaminophen 500mg', '$10.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 7 -->
-                <div class="medicine-card" data-category="vitamins">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop" alt="Multivitamin" class="medicine-image">
-                    <div class="medicine-category">Vitamins</div>
-                    <h3 class="medicine-title">Daily Multivitamin</h3>
-                    <div class="medicine-price">$22.99</div>
-                    <p class="medicine-description">Complete daily nutrition with essential vitamins and minerals for optimal health.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Daily Multivitamin', '$22.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 8 -->
-                <div class="medicine-card" data-category="cold-flu">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsH3hA6oZe7merqjslNbZfihQ5Ix499_CrGw&s" alt="Cough Syrup" class="medicine-image">
-                    <div class="medicine-category">Cold & Flu</div>
-                    <h3 class="medicine-title">Cough Suppressant</h3>
-                    <div class="medicine-price">$11.99</div>
-                    <p class="medicine-description">Effective cough suppressant for dry, persistent coughs due to minor throat irritation.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Cough Suppressant', '$11.99')">Add to Cart</button>
-                </div>
-
-                <!-- Medicine 9 -->
-                <div class="medicine-card" data-category="digestive">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" alt="Probiotics" class="medicine-image">
-                    <div class="medicine-category">Digestive Health</div>
-                    <h3 class="medicine-title">Probiotic Capsules</h3>
-                    <div class="medicine-price">$28.99</div>
-                    <p class="medicine-description">Advanced probiotic formula to support digestive health and immune function.</p>
-                    <button class="btn btn-primary w-full" onclick="openOrderModal('Probiotic Capsules', '$28.99')">Add to Cart</button>
-                </div>
+                <!-- cards will be injected here -->
             </div>
         </div>
     </main>
 
-    <!-- Order Modal -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Order Medication</h2>
-                <button class="close-btn" onclick="closeModal('orderModal')">&times;</button>
-            </div>
-            
-            <form onsubmit="handleOrderForm(event)">
-                <div class="form-group">
-                    <label class="form-label">Medication</label>
-                    <input type="text" class="form-input" id="medicationName" name="medication" readonly>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Price</label>
-                    <input type="text" class="form-input" id="medicationPrice" readonly>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Quantity</label>
-                    <input type="number" class="form-input" name="quantity" min="1" value="1" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Your Name *</label>
-                    <input type="text" class="form-input" name="customerName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Email *</label>
-                    <input type="email" class="form-input" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Phone Number *</label>
-                    <input type="tel" class="form-input" name="phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Delivery Address</label>
-                    <textarea class="form-textarea" name="address" placeholder="Enter your full address for delivery"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Special Instructions</label>
-                    <textarea class="form-textarea" name="notes" placeholder="Any special instructions or notes"></textarea>
-                </div>
-                
-                <div class="flex gap-4">
-                    <button type="submit" class="btn btn-primary flex-1">Place Order</button>
-                    <button type="button" class="btn btn-outline" onclick="closeModal('orderModal')">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!-- removed legacy order modal (using transaction modal instead) -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -473,53 +325,170 @@
 
     <script src="script.js"></script>
     <script>
-        // Medicine-specific JavaScript
-        function openOrderModal(medicationName, price) {
-            document.getElementById('medicationName').value = medicationName;
-            document.getElementById('medicationPrice').value = price;
-            openModal('orderModal');
+        // Load medicines from backend and render cards with image, name, description, price
+        let medicines = [];
+
+        async function fetchMedicines() {
+            try {
+                const res = await fetch('/medicines');
+                medicines = await res.json();
+                renderMedicines(medicines);
+            } catch (err) {
+                console.error('Failed to load medicines:', err);
+            }
         }
 
-        // Category filtering
-        document.addEventListener('DOMContentLoaded', function() {
+        function renderMedicines(list) {
+            const grid = document.getElementById('medicinesGrid');
+            grid.innerHTML = '';
+
+            if (!list.length) {
+                grid.innerHTML = '<p>No medicines available right now.</p>';
+                return;
+            }
+
+            list.forEach(med => {
+                const card = document.createElement('div');
+                card.className = 'medicine-card';
+                card.setAttribute('data-category', med.category || 'all');
+
+                const img = med.imageUrl ? `<img src="${med.imageUrl}" alt="${med.name}" class="medicine-image">` : '';
+                const desc = med.description ? `<p class="medicine-description">${med.description}</p>` : '';
+                const price = `<div class="medicine-price">$${Number(med.price).toFixed(2)}</div>`;
+
+                // attach medicine id so order modal can submit
+                card.innerHTML = `
+                    ${img}
+                    <h3 class="medicine-title">${med.name}</h3>
+                    ${desc}
+                    ${price}
+                    <button class="btn btn-primary w-full" onclick="openOrderModal('${med._id}', '${escapeForAttr(med.name)}', '${Number(med.price).toFixed(2)}')">Add to Cart</button>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function escapeForAttr(str){
+            return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        // Search and category filtering
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMedicines();
+
             const categoryBtns = document.querySelectorAll('.category-btn');
-            const medicineCards = document.querySelectorAll('.medicine-card');
-            
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Update active button
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const category = this.getAttribute('data-category');
-                    
-                    // Filter medicines
-                    medicineCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // Search functionality
+            categoryBtns.forEach(btn => btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.dataset.category;
+                const filtered = category === 'all' ? medicines : medicines.filter(m => (m.category || 'all') === category);
+                renderMedicines(filtered);
+            }));
+
             const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                
-                medicineCards.forEach(card => {
-                    const title = card.querySelector('.medicine-title').textContent.toLowerCase();
-                    const description = card.querySelector('.medicine-description').textContent.toLowerCase();
-                    
-                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+            searchInput.addEventListener('input', () => {
+                const term = searchInput.value.trim().toLowerCase();
+                const filtered = medicines.filter(m => {
+                    return m.name.toLowerCase().includes(term) || (m.description || '').toLowerCase().includes(term);
                 });
+                renderMedicines(filtered);
             });
+        });
+
+        // Modal helper functions used by this page
+        function openModal(id){
+            const el = document.getElementById(id);
+            if(!el) return;
+            el.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id){
+            const el = document.getElementById(id);
+            if(!el) return;
+            el.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+    <!-- Transaction Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Place Order</h2>
+                <button class="close-btn" onclick="closeModal('transactionModal')">&times;</button>
+            </div>
+            <form id="transactionForm">
+                <input type="hidden" id="txMedicineId">
+                <div class="form-group">
+                    <label class="form-label">Medicine</label>
+                    <input type="text" id="txMedicineName" class="form-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price</label>
+                    <input type="text" id="txPrice" class="form-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" id="txUserName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="txUserEmail" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Contact</label>
+                    <input type="tel" id="txUserContact" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" id="txQuantity" class="form-input" value="1" min="1" required>
+                </div>
+                <div style="display:flex;gap:1rem;margin-top:1rem;">
+                    <button type="submit" class="btn btn-primary">Submit Order</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('transactionModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // openOrderModal overridden to receive medicine id
+        function openOrderModal(medicineId, medicineName, price) {
+            document.getElementById('txMedicineId').value = medicineId;
+            document.getElementById('txMedicineName').value = medicineName;
+            document.getElementById('txPrice').value = price;
+            document.getElementById('txQuantity').value = 1;
+            openModal('transactionModal');
+        }
+
+        document.getElementById('transactionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const medicineId = document.getElementById('txMedicineId').value;
+            const userName = document.getElementById('txUserName').value;
+            const userEmail = document.getElementById('txUserEmail').value;
+            const userContact = document.getElementById('txUserContact').value;
+            const quantity = Number(document.getElementById('txQuantity').value);
+
+            try {
+                const res = await fetch('/transactions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ medicineId, userName, userEmail, userContact, quantity })
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    return alert('Error placing order: ' + (err.error || res.statusText));
+                }
+
+                const data = await res.json();
+                // success: redirect to pharmacist prescriptions tab
+                window.location.href = 'index.html';
+            } catch (err) {
+                console.error('Order failed', err);
+                alert('Order failed: ' + err.message);
+            }
         });
     </script>
 </body>
